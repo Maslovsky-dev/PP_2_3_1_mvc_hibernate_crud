@@ -20,6 +20,13 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
+   public User userById(Long id) {
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
+      query.setParameter("id",id);
+      return query.getSingleResult();
+   }
+
+   @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");

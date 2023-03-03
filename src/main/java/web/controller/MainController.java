@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
@@ -18,24 +16,32 @@ public class MainController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String printWelcome(Model model) {
-		List<User> allUsers = userService.listUsers();
-		model.addAttribute("allUsers", allUsers);
+		model.addAttribute("allUsers", userService.listUsers());
 		return "main";
 	}
+	@RequestMapping(value = "/{id}")
+	public String printWelcome(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("user",userService.userById(id));
+		return "main-1-user";
+	}
 
-	@GetMapping(value = "/addNewUser")
+	@RequestMapping(value = "/addNewUser")
 	public String addNewUser(Model model) {
 		User user = new User();
 		model.addAttribute("user", user);
 		return "user-info";
 	}
 
-	@PostMapping("/saveUser")
+	@RequestMapping("/saveUser")
 	public String saveUser(@ModelAttribute ("user") User user) {
 		userService.add(user);
 		return "redirect:/";
 	}
+//	@RequestMapping("/updateInfo")
+//	public String updateUser () {
+//
+//	}
 	
 }
