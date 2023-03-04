@@ -46,4 +46,12 @@ public class UserDaoImp implements UserDao {
       int result = query.executeUpdate();
    }
 
+   @Override
+   public void delete(Long id) {
+      Query query =  sessionFactory.getCurrentSession().
+              createQuery("delete User where id = :idParam");
+      query.setParameter("idParam", id);
+      int result = query.executeUpdate();
+   }
+
 }

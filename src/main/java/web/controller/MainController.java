@@ -17,13 +17,7 @@ public class MainController {
 		model.addAttribute("allUsers", userService.listUsers());
 		return "index";
 	}
-	//Отображение пользователя по его ID
-	@GetMapping (value = "/{id}")
-	public String printWelcome(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("user",userService.userById(id));
-		return "show";
-	}
-	//Форма для добавления пользователя
+
 	@GetMapping(value = "/new")
 	public String addNewUser(@ModelAttribute ("user") User user) {
 		return "new";
@@ -43,6 +37,11 @@ public class MainController {
 	@PatchMapping("/{id}")
 	public  String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
 		userService.update(id,user);
+		return "redirect:/";
+	}
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		userService.delete(id);
 		return "redirect:/";
 	}
 }
