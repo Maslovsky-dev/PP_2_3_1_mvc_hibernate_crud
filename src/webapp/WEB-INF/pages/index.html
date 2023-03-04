@@ -20,7 +20,6 @@
 
     <tbody>
     <tr th:each="user: ${allUsers}">
-
         <td th:text="${user.firstName}"/>
         <td th:text="${user.lastName}"/>
         <td th:text="${user.email}"/>
@@ -30,7 +29,7 @@
 <br>
 
 <input type="button" value="Add"
-       onclick="window.location.href = 'addNewUser'"/>
+       onclick="window.location.href = 'new'"/>
 
 </form>
 </body>

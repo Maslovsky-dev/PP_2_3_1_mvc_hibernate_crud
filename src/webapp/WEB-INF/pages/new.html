@@ -8,7 +8,7 @@
 <body>
 <h2>User info</h2>
 
-<form th:action="@{/saveUser}" th:object="${user}" method="post">
+<form th:method="POST" th:action="@{/saveUser}" th:object="${user}">
     <label for="name">Name:</label>
     <input type="text" id="name" th:field="*{firstName}"> <br>
     <label for="lastName">Family:</label>

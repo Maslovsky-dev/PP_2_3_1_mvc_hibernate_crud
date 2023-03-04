@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -31,6 +32,18 @@ public class UserDaoImp implements UserDao {
    public List<User> listUsers() {
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
+   }
+
+   @Override
+   public void update(Long id, User user) {
+      Query query = sessionFactory.getCurrentSession().
+              createQuery("update User set firstName = :nameParam, lastName = :lastNameParam," +
+              "email = :emailParam where id = :idParam");
+      query.setParameter("nameParam",user.getFirstName());
+      query.setParameter("lastNameParam",user.getLastName());
+      query.setParameter("emailParam",user.getEmail());
+      query.setParameter("idParam",id);
+      int result = query.executeUpdate();
    }
 
 }

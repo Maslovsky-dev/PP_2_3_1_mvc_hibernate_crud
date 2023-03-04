@@ -30,5 +30,10 @@ public class UserServiceImpl implements UserService {
     public List<User> listUsers() {
         return userDao.listUsers();
     }
+    @Transactional
+    @Override
+    public void update(Long id, User user) {
+        userDao.update(id,user);
+    }
 
 }

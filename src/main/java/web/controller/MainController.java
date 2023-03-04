@@ -3,45 +3,46 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController {
 	@Autowired
 	UserService userService;
-
-	@RequestMapping(value = "/")
+	//Отображение всех пользователей
+	@GetMapping(value = "/")
 	public String printWelcome(Model model) {
 		model.addAttribute("allUsers", userService.listUsers());
-		return "main";
+		return "index";
 	}
-	@RequestMapping(value = "/{id}")
+	//Отображение пользователя по его ID
+	@GetMapping (value = "/{id}")
 	public String printWelcome(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("user",userService.userById(id));
-		return "main-1-user";
+		return "show";
 	}
-
-	@RequestMapping(value = "/addNewUser")
-	public String addNewUser(Model model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		return "user-info";
+	//Форма для добавления пользователя
+	@GetMapping(value = "/new")
+	public String addNewUser(@ModelAttribute ("user") User user) {
+		return "new";
 	}
-
-	@RequestMapping("/saveUser")
+	//Сохранение пользователя
+	@PostMapping("/saveUser")
 	public String saveUser(@ModelAttribute ("user") User user) {
 		userService.add(user);
 		return "redirect:/";
 	}
-//	@RequestMapping("/updateInfo")
-//	public String updateUser () {
-//
-//	}
-	
+	//Форма для редактирования пользователя
+	@GetMapping (value = "/{id}/edit")
+	public String edit(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("user",userService.userById(id));
+		return "edit";
+	}
+	@PatchMapping("/{id}")
+	public  String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+		userService.update(id,user);
+		return "redirect:/";
+	}
 }
