@@ -17,7 +17,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Family</th>
+                <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Operations</th>
             </tr>
@@ -26,13 +26,13 @@
             <tr th:each="user: ${allUsers}">
                 <td th:text="${user.getId()}" style="width: 55px;"/>
                 <td th:text="${user.getFirstName()}"
-                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                    style="width: 150px; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getFirstName()}"></td>
                 <td th:text="${user.getLastName()}"
-                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                    style="width: 150px; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getLastName()}"></td>
                 <td th:text="${user.getEmail()}"
-                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                    style="width: 250px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getEmail()}"></td>
                 <td>
                     <div>
