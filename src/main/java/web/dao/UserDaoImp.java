@@ -22,7 +22,6 @@ public class UserDaoImp implements UserDao {
 
 
    @Override
-   @SuppressWarnings("unchecked")
    public List<User> listUsers() {
       TypedQuery<User> query = entityManager.createQuery("from User", User.class);
       return query.getResultList();
@@ -42,7 +41,7 @@ public class UserDaoImp implements UserDao {
       query.setParameter("lastNameParam",user.getLastName());
       query.setParameter("emailParam",user.getEmail());
       query.setParameter("idParam",id);
-      int result = query.executeUpdate();
+      query.executeUpdate();
    }
 
    @Override
@@ -50,7 +49,7 @@ public class UserDaoImp implements UserDao {
       Query query =  entityManager.
               createQuery("delete User where id = :idParam");
       query.setParameter("idParam", id);
-      int result = query.executeUpdate();
+      query.executeUpdate();
    }
 
 }

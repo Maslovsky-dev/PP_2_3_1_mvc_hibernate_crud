@@ -24,23 +24,26 @@
             </thead>
             <tbody>
             <tr th:each="user: ${allUsers}">
-                <td th:text="${user.getId()}" style="width: 55px;" />
-                <td th:text="${user.getFirstName()}" style="max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                <td th:text="${user.getId()}" style="width: 55px;"/>
+                <td th:text="${user.getFirstName()}"
+                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getFirstName()}"></td>
-                <td th:text="${user.getLastName()}" style="max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                <td th:text="${user.getLastName()}"
+                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getLastName()}"></td>
-                <td th:text="${user.getEmail()}" style="max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                <td th:text="${user.getEmail()}"
+                    style="width: 185px; max-width: 185px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
                     th:title="${user.getEmail()}"></td>
                 <td>
                     <div>
-                    <form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}" th:object="${user}"
-                          style="display: inline-block; margin-right: 10px;">
-                        <button type="submit">Edit</button>
-                    </form>
-                    <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}"
-                          style="display: inline-block;">
-                        <button type="submit">Delete</button>
-                    </form>
+                        <form th:method="GET" th:action="@{/{id}/edit(id=${user.getId()})}" th:object="${user}"
+                              style="display: inline-block; margin-right: 10px;">
+                            <button type="submit">Edit</button>
+                        </form>
+                        <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}"
+                              style="display: inline-block;">
+                            <button type="submit">Delete</button>
+                        </form>
                     </div>
                 </td>
             </tr>

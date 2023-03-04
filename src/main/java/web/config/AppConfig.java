@@ -36,12 +36,12 @@ public class AppConfig {
       dataSource.setUsername(env.getProperty("db.username"));
       dataSource.setPassword(env.getProperty("db.password"));
 
-      dataSource.setInitialSize(Integer.valueOf(env.getRequiredProperty("db.initialSize")));
-      dataSource.setMinIdle(Integer.valueOf(env.getRequiredProperty("db.minIdle")));
-      dataSource.setMaxIdle(Integer.valueOf(env.getRequiredProperty("db.maxIdle")));
-      dataSource.setTimeBetweenEvictionRunsMillis(Long.valueOf(env.getRequiredProperty("db.timeBetweenEvictionRunsMillis")));
-      dataSource.setMinEvictableIdleTimeMillis(Long.valueOf(env.getRequiredProperty("db.minEvictableIdleTimeMillis")));
-      dataSource.setTestOnBorrow(Boolean.valueOf(env.getRequiredProperty("db.testOnBorrow")));
+      dataSource.setInitialSize(Integer.parseInt(env.getRequiredProperty("db.initialSize")));
+      dataSource.setMinIdle(Integer.parseInt(env.getRequiredProperty("db.minIdle")));
+      dataSource.setMaxIdle(Integer.parseInt(env.getRequiredProperty("db.maxIdle")));
+      dataSource.setTimeBetweenEvictionRunsMillis(Long.parseLong(env.getRequiredProperty("db.timeBetweenEvictionRunsMillis")));
+      dataSource.setMinEvictableIdleTimeMillis(Long.parseLong(env.getRequiredProperty("db.minEvictableIdleTimeMillis")));
+      dataSource.setTestOnBorrow(Boolean.parseBoolean(env.getRequiredProperty("db.testOnBorrow")));
       dataSource.setValidationQuery(env.getRequiredProperty("db.validationQuery"));
       return dataSource;
    }
