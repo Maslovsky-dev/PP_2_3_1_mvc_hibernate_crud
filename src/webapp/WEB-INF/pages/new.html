@@ -16,21 +16,20 @@
         <form th:method="POST" th:action="@{/saveUser}" th:object="${user}">
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" th:field="*{firstName}">
+                <input type="text" class="form-control" id="name" th:field="*{firstName}" maxlength="255">
                 <label for="name">Name</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+                <input type="text" class="form-control" id="lastName" th:field="*{lastName}" maxlength="255">
                 <label for="lastName">Last name</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" th:field="*{email}">
+                <input type="email" class="form-control" id="email" th:field="*{email}" maxlength="255">
                 <label for="email">Email</label>
             </div>
             <button type="submit">Add</button>
         </form>
     </div>
 </div>
-
 </body>
 </html>

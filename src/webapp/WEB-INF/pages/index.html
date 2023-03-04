@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <tr th:each="user: ${allUsers}">
-                <td th:text="${user.getId()}"/>
+                <td th:text="${user.getId()}" />
                 <td th:text="${user.getFirstName()}"/>
                 <td th:text="${user.getLastName()}"/>
                 <td th:text="${user.getEmail()}"/>
