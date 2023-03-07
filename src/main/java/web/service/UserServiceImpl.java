@@ -7,6 +7,7 @@ import web.dao.UserDao;
 import web.model.User;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -30,11 +31,13 @@ public class UserServiceImpl implements UserService {
     public List<User> listUsers() {
         return userDao.listUsers();
     }
+
     @Transactional
     @Override
-    public void update(Long id, User user) {
-        userDao.update(id,user);
+    public void update(User user) {
+        userDao.update(user);
     }
+
     @Transactional
     @Override
     public void delete(Long id) {
